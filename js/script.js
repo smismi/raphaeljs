@@ -1,6 +1,6 @@
 function getAnchors(p1x, p1y, p2x, p2y, p3x, p3y) {
-	var l1 = (p2x - p1x) / 2,
-		l2 = (p3x - p2x) / 2,
+	var l1 = (p2x - p1x) / 3,
+		l2 = (p3x - p2x) / 3,
 		a = Math.atan((p2x - p1x) / Math.abs(p2y - p1y)),
 		b = Math.atan((p3x - p2x) / Math.abs(p2y - p3y));
 	a = p1y < p2y ? Math.PI - a : a;
@@ -73,8 +73,12 @@ window.onload = function () {
 			blanket.push(r.rect(leftgutter + X * i, 0, X, height - bottomgutter).attr({stroke: "none", fill: "#fff", opacity: 0}));
 			var rect = blanket[blanket.length - 1];
 
-			(function (x, y) {
-				var timer, i = 0;
+			(function (x, y, i) {
+				var timer;
+				rect.click(function(){
+					var value = data[i];
+					alert(value);
+				});
 				rect.hover(function () {
 
 					console.log("hovered")
@@ -101,7 +105,7 @@ window.onload = function () {
 //						is_label_visible = false;
 					}, 1);
 				});
-			})(x, y);
+			})(x, y, i);
 
 		}
 
